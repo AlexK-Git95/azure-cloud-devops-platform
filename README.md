@@ -6,7 +6,7 @@ The application itself is intentionally simple. The main purpose of this project
 
 ## Project Purpose
 
-The goal of this project is to build a production-style DevOps workflow around a small API service. It is intended to prove that AK can work systematically with core DevOps practices such as:
+The goal of this project is to build a production-style DevOps workflow around a small API service. It is intended to demonstrate the ability to work systematically with core DevOps practices such as:
 
 * Building and running a containerized application with Docker
 * Managing a local multi-container environment with Docker Compose
