@@ -14,8 +14,8 @@
 - Displays total, used, and available physical and swap memory in a human-readable (-h) format (GB/MB).
 # journalctl
 - Troubleshooting system-level crashes or service failures with logs (journalctl -u nginx for example).
-# tail
--f - Watching an application or error log live while you hit a website to see what errors pop up.
+# tail -f
+ - Watching an application or error log live while you hit a website to see what errors pop up.
 # grep
 - It scans text or command outputs for specific keywords. (ps aux | grep python to find only Python processes.)
 # curl
