@@ -62,3 +62,59 @@ ps aux | grep <process-name>
 
 # Check HTTP endpoint
 curl -v http://localhost:5000/health
+
+Likely Causes
+
+List possible root causes.
+
+Examples:
+
+Wrong configuration
+Missing environment variable
+Expired or missing secret
+Disk full
+Service dependency unavailable
+Failed deployment
+Permission issue
+Network/DNS issue
+Application bug
+Fix / Recovery Steps
+
+Describe the safe recovery process.
+
+Example structure:
+
+Confirm the affected service/environment.
+Check logs and identify the error.
+Verify recent changes.
+Apply the safest fix or rollback.
+Restart only if necessary and approved.
+Validate the service after the fix.
+Communicate status to the team.
+Validation
+
+Describe how to confirm that the issue is resolved.
+
+Examples:
+
+Health endpoint returns 200 OK
+Logs no longer show errors
+Pipeline/deployment succeeds
+Pod/container is stable
+Users or dependent services can access the application
+Prevention
+
+Describe how to reduce the chance of this happening again.
+
+Examples:
+
+Add monitoring or alerting
+Improve health checks
+Add pipeline validation
+Improve documentation
+Add resource limits
+Rotate or validate secrets
+Add rollback procedure
+Notes
+
+Add anything specific to this system, environment, or project.
