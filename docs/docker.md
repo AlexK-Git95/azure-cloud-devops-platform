@@ -2,16 +2,17 @@
 
 To troubleshoot a running or failing container, use:
 
-'''bash
-docker ps
-docker logs azure-cloud-devops-api
-docker logs -f azure-cloud-devops-api
-docker exec -it azure-cloud-devops-api sh
-docker port azure-cloud-devops-api
-docker inspect azure-cloud-devops-api
+```bash
+docker ps                          # List all containers
+docker logs azure-cloud-devops-api # View container logs
+docker logs -f azure-cloud-devops-api # Follow live logs
+docker exec -it azure-cloud-devops-api sh # Enter container shell
+docker port azure-cloud-devops-api # Check port mapping
+docker inspect azure-cloud-devops-api # View container details
+```
 
+## What I Checked
 
-## What I checked
 - Whether the container is running
 - Application startup logs
 - Live request logs
@@ -22,10 +23,9 @@ docker inspect azure-cloud-devops-api
 
 ## Interview Answer
 
-If a container is not starting or not reachable, 
-I would first check docker ps -a to see its status and exit code. 
-Then I would check docker logs for application errors. 
-If it is running but not reachable, 
-I would verify the port mapping with docker port or docker ps. 
-If needed, I would enter the container with docker exec to inspect files, environment variables,
-runtime version, and application configuration.
+If a container is not starting or not reachable:
+
+1. **Check container status**: `docker ps -a` to see status and exit code
+2. **Review logs**: `docker logs` for application errors
+3. **Verify connectivity**: If running but unreachable, check port mapping with `docker port` or `docker ps`
+4. **Debug inside**: Use `docker exec` to inspect files, environment variables, runtime version, and application configuration
