@@ -12,13 +12,13 @@ docker inspect azure-cloud-devops-api
 
 
 ## What I checked
-Whether the container is running
-Application startup logs
-Live request logs
-Files inside the container
-Python/runtime version inside the container
-Port mapping between host and container
-Container configuration using inspect
+-Whether the container is running
+-Application startup logs
+-Live request logs
+-Files inside the container
+-Python/runtime version inside the container
+-Port mapping between host and container
+-Container configuration using inspect
 ## Interview Answer
 
 If a container is not starting or not reachable, 
