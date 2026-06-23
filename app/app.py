@@ -2,6 +2,7 @@ from flask import Flask, jsonify
 from datetime import datetime, timezone
 import os
 
+
 app = Flask(__name__)
 
 SERVICE_NAME = os.getenv("SERVICE_NAME", "azure-cloud-devops-api")
