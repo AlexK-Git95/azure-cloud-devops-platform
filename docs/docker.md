@@ -40,3 +40,13 @@ Example manual Docker command:
 
 ```bash
 docker run -p 5001:5000 --name azure-cloud-devops-api azure-cloud-devops-api:local
+
+With Docker Compose, this configuration can be described in a docker-compose.yml file and started with:
+
+docker compose up --build
+Key Concepts
+services define the containers that should run
+build tells Compose how to build the image
+ports maps host ports to container ports
+environment sets environment variables inside the container
+depends_on defines startup dependency between services
