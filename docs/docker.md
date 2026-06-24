@@ -29,3 +29,14 @@ If a container is not starting or not reachable:
 2. **Review logs**: `docker logs` for application errors
 3. **Verify connectivity**: If running but unreachable, check port mapping with `docker port` or `docker ps`
 4. **Debug inside**: Use `docker exec` to inspect files, environment variables, runtime version, and application configuration
+
+## Docker Compose Basics
+
+Docker Compose is used to define and run multi-container Docker applications.
+
+Instead of running a long `docker run` command manually, Compose allows the application configuration to be written in a YAML file.
+
+Example manual Docker command:
+
+```bash
+docker run -p 5001:5000 --name azure-cloud-devops-api azure-cloud-devops-api:local
