@@ -7,8 +7,7 @@ locals {
     managed_by  = "terraform"
   }
 
-  storage_account_base = substr(replace("st${var.project_name}${var.environment}", "-", ""), 0, 18)
-  storage_account_name = "${local.storage_account_base}${random_string.storage_suffix.result}"
+  storage_account_name = "${var.storage_account_prefix}${random_string.storage_suffix.result}"
 }
 
 resource "random_string" "storage_suffix" {

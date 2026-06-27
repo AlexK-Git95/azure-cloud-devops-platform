@@ -25,3 +25,14 @@ variable "location" {
   type        = string
   default     = "westeurope"
 }
+
+variable "storage_account_prefix" {
+  description = "Storage account name prefix. Must be lowercase letters and numbers only, maximum 18 characters."
+  type        = string
+  default     = "stdevopsplatdev"
+
+  validation {
+    condition     = can(regex("^[a-z0-9]{3,18}$", var.storage_account_prefix))
+    error_message = "storage_account_prefix must be 3-18 characters and contain only lowercase letters and numbers."
+  }
+}
