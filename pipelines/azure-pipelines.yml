@@ -41,8 +41,8 @@ stages:
             displayName: "Run project validation"
 
           - script: |
-              docker build -t $(imageName):$(imageTag) .
-            displayName: "Build Docker image"
+              IMAGE_NAME="$(imageName)" IMAGE_TAG="$(imageTag)" bash scripts/build-image.sh
+            displayName: "Build and verifyDocker image"
 
           - script: |
               docker images | grep $(imageName)
