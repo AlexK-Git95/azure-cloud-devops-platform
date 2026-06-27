@@ -37,8 +37,8 @@ stages:
             displayName: "Install Python dependencies"
 
           - script: |
-              python -m compileall app
-            displayName: "Validate Python syntax"
+              bash scripts/validate.sh
+            displayName: "Run project validation"
 
           - script: |
               docker build -t $(imageName):$(imageTag) .
