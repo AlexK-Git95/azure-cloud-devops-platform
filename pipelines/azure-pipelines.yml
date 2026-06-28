@@ -12,10 +12,11 @@ variables:
   pythonVersion: "3.8"
   imageName: "azure-cloud-devops-api"
   imageTag: "$(Build.BuildId)"
+  terraformVersion: "1.6.6"
 
 stages:
   - stage: Build
-    displayName: "Build and Validate"
+    displayName: "Build and Validate Application"
     jobs:
       - job: BuildAndValidate
         displayName: "Build and validate application"
@@ -42,8 +43,42 @@ stages:
 
           - script: |
               IMAGE_NAME="$(imageName)" IMAGE_TAG="$(imageTag)" bash scripts/build-image.sh
-            displayName: "Build and verifyDocker image"
+            displayName: "Build and verify Docker image"
+
+  - stage: Terraform
+    displayName: "Validate Terraform"
+    jobs:
+      - job: TerraformValidate
+        displayName: "Terraform fmt, init and validate"
+        pool:
+          vmImage: "ubuntu-latest"
+
+        steps:
+          - checkout: self
+            displayName: "Checkout repository"
 
           - script: |
-              docker images | grep $(imageName)
-            displayName: "Verify Docker image exists"
+              sudo apt-get update
+              sudo apt-get install -y unzip
+              curl -fsSL -o terraform.zip "https://releases.hashicorp.com/terraform/${TF_VERSION}/terraform_${TF_VERSION}_linux_amd64.zip"
+              unzip terraform.zip
+              sudo mv terraform /usr/local/bin/terraform
+              terraform version
+            displayName: "Install Terraform"
+            env:
+              TF_VERSION: $(terraformVersion)
+
+          - script: |
+              cd terraform
+              terraform fmt -check -recursive
+            displayName: "Check Terraform formatting"
+
+          - script: |
+              cd terraform
+              terraform init -backend=false
+            displayName: "Initialize Terraform"
+
+          - script: |
+              cd terraform
+              terraform validate
+            displayName: "Validate Terraform configuration"
