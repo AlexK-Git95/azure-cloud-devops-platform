@@ -1,0 +1,9 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: devops-platform-api
+  namespace: devops-platform
+
+spec:
+  replicas: 2
