@@ -27,18 +27,13 @@ spec:
             - name: http
               containerPort: 5000
 
+          envFrom:
+            - configMapRef:
+                name: devops-platform-api-config
+
           env:
-            - name: SERVICE_NAME
-              value: "azure-cloud-devops-api"
-
-            - name: APP_VERSION
-              value: "1.0.0"
-
-            - name: ENVIRONMENT
-              value: "kubernetes-local"
-
-            - name: REDIS_HOST
-              value: "redis"
-
-            - name: REDIS_PORT
-              value: "6379"
+            - name: REDIS_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: devops-platform-api-secret
+                  key: REDIS_PASSWORD
