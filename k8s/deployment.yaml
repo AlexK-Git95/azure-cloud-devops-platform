@@ -7,3 +7,38 @@ metadata:
 
 spec:
   replicas: 2
+
+  selector:
+    matchLabels:
+      app: devops-platform-api
+
+  template:
+    metadata:
+      labels:
+        app: devops-platform-api
+
+    spec:
+      containers:
+        - name: devops-platform-api
+          image: azure-cloud-devops-api:local
+          imagePullPolicy: IfNotPresent
+
+          ports:
+            - name: http
+              containerPort: 5000
+
+          env:
+            - name: SERVICE_NAME
+              value: "azure-cloud-devops-api"
+
+            - name: APP_VERSION
+              value: "1.0.0"
+
+            - name: ENVIRONMENT
+              value: "kubernetes-local"
+
+            - name: REDIS_HOST
+              value: "redis"
+
+            - name: REDIS_PORT
+              value: "6379"
