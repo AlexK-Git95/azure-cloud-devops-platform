@@ -26,7 +26,7 @@ spec:
           ports:
             - name: http
               containerPort: 5000
-              
+
           readinessProbe:
             httpGet:
               path: /health
@@ -44,6 +44,13 @@ spec:
             periodSeconds: 10
             timeoutSeconds: 2
             failureThreshold: 3
+          resources:
+            requests:
+              memory: "128Mi"
+              cpu: "100m"
+            limits:
+              memory: "256Mi"
+              cpu: "500m"
 
           envFrom:
             - configMapRef:
