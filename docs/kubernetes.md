@@ -166,3 +166,43 @@ Reload the local image if it is unavailable inside Minikube:
 minikube image load azure-cloud-devops-api:local
 kubectl rollout restart deployment/devops-platform-api -n devops-platform
 ```
+
+## Rollout and rollback
+
+A rollout is the process of applying a new Pod template to a Deployment. Changes to the image, probes, resource settings, environment variables, `command`, or `args` create a new ReplicaSet.
+
+The Deployment controller manages the rollout. It creates new Pods from the new ReplicaSet, waits for them to become Ready, and then gradually scales down the old ReplicaSet.
+
+Check the status of the current rollout:
+
+```bash
+kubectl rollout status deployment/devops-platform-api \
+  -n devops-platform \
+  --timeout=120s
+```
+
+View the available Deployment revisions:
+
+```bash
+kubectl rollout history deployment/devops-platform-api \
+  -n devops-platform
+```
+
+Restore the previous revision:
+
+```bash
+kubectl rollout undo deployment/devops-platform-api \
+  -n devops-platform
+```
+
+Restore a specific revision:
+
+```bash
+kubectl rollout undo deployment/devops-platform-api \
+  -n devops-platform \
+  --to-revision=<REVISION>
+```
+
+`rollout status` only monitors a rollout. `rollout history` displays stored revisions, while `rollout undo` starts a new rollout using a previous Pod template.
+
+A rollback repairs the live Kubernetes Deployment. If the faulty configuration is committed to Git, it must also be corrected in the repository to prevent a future deployment from reintroducing the problem.
